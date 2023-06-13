@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :administrators
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  Rails.application.routes.draw do
+    devise_for :administrators, path: '', path_names: {
+      sign_in: 'sign_in',
+      sign_out: 'logout',
+      registration: 'sign_up'
+    },
+    controllers: {
+      sessions: 'administrators/sessions',
+      registrations: 'administrators/registrations'
+    }
+  end
 end
