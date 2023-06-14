@@ -11,4 +11,5 @@ Rails.application.routes.draw do
 
   get '/current_administrator', to: 'current_administrator#index'
   resources :parkings
+  resources :vacancies
 end
