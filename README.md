@@ -6,7 +6,7 @@ application up and running.
 # Estrutura do banco de dados
 
 <div align="center">
-    <img src="seiAPIs.svg" style="background: white;" />
+    <img src="seiAPIs.svg" />
 </div>
 
 # Tabelas
