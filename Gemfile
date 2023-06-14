@@ -7,6 +7,8 @@ gem "devise"
 
 gem "devise-jwt"
 
+gem "faker"
+
 gem "rack-cors"
 
 gem "fast_jsonapi"
