@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_14_020149) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_14_024935) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,5 +40,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_14_020149) do
     t.index ["administrator_id"], name: "index_parkings_on_administrator_id"
   end
 
+  create_table "vacancies", force: :cascade do |t|
+    t.string "code"
+    t.integer "kind"
+    t.bigint "parking_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parking_id"], name: "index_vacancies_on_parking_id"
+  end
+
   add_foreign_key "parkings", "administrators"
+  add_foreign_key "vacancies", "parkings"
 end
