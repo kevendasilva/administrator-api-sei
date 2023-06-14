@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_14_055158) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_14_062334) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,6 +68,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_14_055158) do
     t.index ["administrator_id"], name: "index_parkings_on_administrator_id"
   end
 
+  create_table "payment_methods", force: :cascade do |t|
+    t.string "cardholder_name"
+    t.string "card_number"
+    t.string "validity"
+    t.integer "security_code"
+    t.bigint "client_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_payment_methods_on_client_id"
+  end
+
   create_table "vacancies", force: :cascade do |t|
     t.string "code"
     t.integer "kind"
@@ -98,6 +109,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_14_055158) do
   add_foreign_key "movements", "clients"
   add_foreign_key "movements", "vehicles"
   add_foreign_key "parkings", "administrators"
+  add_foreign_key "payment_methods", "clients"
   add_foreign_key "vacancies", "parkings"
   add_foreign_key "vacancy_reservations", "clients"
   add_foreign_key "vacancy_reservations", "vacancies"
