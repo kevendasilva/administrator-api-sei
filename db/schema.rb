@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_13_204700) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_14_020149) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,4 +29,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_204700) do
     t.index ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true
   end
 
+  create_table "parkings", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.time "opening_time"
+    t.time "closing_time"
+    t.bigint "administrator_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["administrator_id"], name: "index_parkings_on_administrator_id"
+  end
+
+  add_foreign_key "parkings", "administrators"
 end
