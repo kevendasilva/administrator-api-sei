@@ -4,7 +4,7 @@ class ParkingsController < ApplicationController
 
   # GET /parkings
   def index
-    @parkings = Parking.all
+    @parkings = current_administrator.parkings
 
     render json: @parkings
   end
@@ -16,7 +16,7 @@ class ParkingsController < ApplicationController
 
   # POST /parkings
   def create
-    @parking = Parking.new(parking_params)
+    @parking = current_administrator.parkings.build(parking_params)
 
     if @parking.save
       render json: @parking, status: :created, location: @parking
@@ -42,7 +42,7 @@ class ParkingsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_parking
-      @parking = Parking.find(params[:id])
+      @parking = current_administrator.parkings.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
