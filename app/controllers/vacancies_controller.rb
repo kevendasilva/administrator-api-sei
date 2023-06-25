@@ -4,14 +4,16 @@ class VacanciesController < ApplicationController
 
   # GET /vacancies
   def index
-    @vacancies = Vacancy.where(parking_id: params[:parking_id])
+    @parking_id = params[:parking_id]
+    @vacancies = Vacancy.where(parking_id: @parking_id)
 
-    render json: @vacancies
-  end
-
-  # GET /vacancies/1
-  def show
-    render json: @vacancy
+    if @parking_id
+      render json: @vacancies
+    else
+      render json: {
+        message: "Parking ID must be provided."
+      }, status: :bad_request
+    end
   end
 
   # POST /vacancies
@@ -36,7 +38,15 @@ class VacanciesController < ApplicationController
 
   # DELETE /vacancies/1
   def destroy
-    @vacancy.destroy
+    if @vacancy.destroy
+      render json: {
+        message: "Successfully deleted."
+      }, status: :ok
+    else
+      render json: {
+        message: "Error deleting vacancy."
+      }, status: :not_found
+    end
   end
 
   private

@@ -14,5 +14,5 @@ Rails.application.routes.draw do
   resources :movements
   resources :parkings
   get '/search/vehicle_by_plate', to: 'search#vehicle_by_plate'
-  resources :vacancies
+  resources :vacancies, except: :show
 end
