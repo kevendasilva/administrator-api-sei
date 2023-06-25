@@ -43,6 +43,6 @@ class MovementsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def movement_params
-      params.require(:movement).permit(:cost, :vehicle_id, :client_id)
+      params.require(:movement).permit(:cost, :entry, :exit, :vehicle_id, :client_id)
     end
 end
