@@ -11,7 +11,14 @@ class ParkingsController < ApplicationController
 
   # GET /parkings/1
   def show
-    render json: @parking
+
+    if @parking
+      render json: @parking
+    else
+      render json: {
+        message: "Error when trying to show parking."
+      }, status: :not_found
+    end
   end
 
   # POST /parkings
@@ -36,17 +43,27 @@ class ParkingsController < ApplicationController
 
   # DELETE /parkings/1
   def destroy
-    @parking.destroy
+    if @parking.destroy
+      render json: {
+        message: "Successfully deleted."
+      }, status: :ok
+    else
+      render json: {
+        message: "Error deleting vacancy."
+      }, status: :not_found
+    end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_parking
-      @parking = current_administrator.parkings.find(params[:id])
+      if current_administrator
+        @parking = current_administrator.parkings.find(params[:id])
+      end
     end
 
     # Only allow a list of trusted parameters through.
     def parking_params
-      params.require(:parking).permit(:name, :address, :opening_time, :closing_time, :administrator_id)
+      params.require(:parking).permit(:name, :address, :opening_time, :closing_time, :cost_per_hour)
     end
 end
