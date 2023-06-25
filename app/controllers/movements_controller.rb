@@ -1,18 +1,6 @@
 class MovementsController < ApplicationController
-  before_action :set_movement, only: %i[ show update destroy ]
+  before_action :set_movement, only: %i[ update destroy ]
   before_action :authenticate_administrator!
-
-  # GET /movements
-  def index
-    @movements = Movement.where(parking_id: params[:parking_id])
-
-    render json: @movements
-  end
-
-  # GET /movements/1
-  def show
-    render json: @movement
-  end
 
   # POST /movements
   def create
@@ -36,7 +24,15 @@ class MovementsController < ApplicationController
 
   # DELETE /movements/1
   def destroy
-    @movement.destroy
+    if @movement.destroy
+      render json: {
+        message: "Successfully deleted."
+      }, status: :ok
+    else
+      render json: {
+        message: "Error deleting vacancy."
+      }, status: :not_found
+    end
   end
 
   private

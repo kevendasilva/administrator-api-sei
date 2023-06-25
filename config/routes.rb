@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   }
 
   get '/current_administrator', to: 'current_administrator#index'
-  resources :movements
+  resources :movements, except: [:index, :show]
   resources :parkings
   get '/search/vehicle_by_plate', to: 'search#vehicle_by_plate'
   resources :vacancies, except: :show
