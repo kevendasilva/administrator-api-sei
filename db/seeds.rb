@@ -18,6 +18,7 @@ n_vacancies = 30 # Número desejado de registros
 
 unless administrator
   administrator = Administrator.create!(
+    name: name,
     email: email,
     password: password,
     password_confirmation: password
