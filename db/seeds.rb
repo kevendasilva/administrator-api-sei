@@ -29,11 +29,15 @@ end
 
 # Creating one parking
 
+min_cost_per_hour = 0.0
+max_cost_per_hour = 6.0
+
 parking = Parking.create!(
     name: Faker::Company.name,
     address: Faker::Address.full_address,
     opening_time: Time.zone.parse('06:00'),
     closing_time: Time.zone.parse('18:00'),
+    cost_per_hour: rand(min_cost_per_hour..max_cost_per_hour),
     administrator_id: administrator.id
 )
 
