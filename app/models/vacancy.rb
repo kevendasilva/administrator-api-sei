@@ -1,5 +1,5 @@
 class Vacancy < ApplicationRecord
-  belongs_to :parking, dependent: :destroy
+  belongs_to :parking
   enum kind: {
     small: 0,
     medium: 1,
