@@ -1,4 +1,4 @@
 class Parking < ApplicationRecord
-  belongs_to :administrator, dependent: :destroy
-  has_many :vacancies
+  belongs_to :administrator
+  has_many :vacancies, dependent: :destroy
 end
