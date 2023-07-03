@@ -1,6 +1,5 @@
 class VacanciesController < ApplicationController
   before_action :set_vacancy, only: %i[ show update destroy ]
-  before_action :authenticate_administrator!
 
   # GET /vacancies
   def index
@@ -21,7 +20,7 @@ class VacanciesController < ApplicationController
     @vacancy = Vacancy.new(vacancy_params)
 
     if @vacancy.save
-      render json: @vacancy, status: :created, location: @vacancy
+      render json: @vacancy, status: :created
     else
       render json: @vacancy.errors, status: :unprocessable_entity
     end

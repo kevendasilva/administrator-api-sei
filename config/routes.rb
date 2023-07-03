@@ -28,7 +28,11 @@ Rails.application.routes.draw do
     delete '/parkings/:id', to: 'parkings#destroy', as: nil
     # Search
     get    '/search/vehicle_by_plate', to: 'search#vehicle_by_plate', as: nil
+    # Vacancies
+    get    '/vacancies',     to: 'vacancies#index',   as: :vacancies_path
+    post   '/vacancies',     to: 'vacancies#create',  as: nil
+    patch  '/vacancies/:id', to: 'vacancies#update',  as: nil
+    put    '/vacancies/:id', to: 'vacancies#update',  as: nil
+    delete '/vacancies/:id', to: 'vacancies#destroy', as: nil
   end
-
-  resources :vacancies, except: :show
 end
