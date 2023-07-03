@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'search/vehicle_by_plate'
   devise_for :administrators, skip: [:sessions, :registrations, :passwords]
   devise_scope :administrator do
     # Sessions
@@ -20,10 +19,11 @@ Rails.application.routes.draw do
     patch  '/parkings/:id', to: 'parkings#update',  as: nil
     put    '/parkings/:id', to: 'parkings#update',  as: nil
     delete '/parkings/:id', to: 'parkings#destroy', as: nil
+    # Search
+    get    '/search/vehicle_by_plate', to: 'search#vehicle_by_plate', as: nil
   end
 
   get '/current_administrator', to: 'current_administrator#index'
   resources :movements, except: [:index, :show]
-  get '/search/vehicle_by_plate', to: 'search#vehicle_by_plate'
   resources :vacancies, except: :show
 end
