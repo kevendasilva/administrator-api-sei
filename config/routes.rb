@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   end
 
   authenticate do
+    # Current Administrator
+    get '/current_administrator', to: 'current_administrator#index'
     # Parkings
     get    '/parkings',     to: 'parkings#index',   as: :parkings_path
     post   '/parkings',     to: 'parkings#create',  as: nil
@@ -23,7 +25,6 @@ Rails.application.routes.draw do
     get    '/search/vehicle_by_plate', to: 'search#vehicle_by_plate', as: nil
   end
 
-  get '/current_administrator', to: 'current_administrator#index'
   resources :movements, except: [:index, :show]
   resources :vacancies, except: :show
 end

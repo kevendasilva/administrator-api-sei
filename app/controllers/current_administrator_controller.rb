@@ -1,6 +1,4 @@
-class CurrentAdministratorController < ApplicationController
-  before_action :authenticate_administrator!
-  
+class CurrentAdministratorController < ApplicationController  
   def index
     render json: current_administrator, status: :ok
   end
