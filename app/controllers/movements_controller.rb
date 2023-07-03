@@ -1,13 +1,12 @@
 class MovementsController < ApplicationController
   before_action :set_movement, only: %i[ update destroy ]
-  before_action :authenticate_administrator!
 
   # POST /movements
   def create
     @movement = Movement.new(movement_params)
 
     if @movement.save
-      render json: @movement, status: :created, location: @movement
+      render json: @movement, status: :created
     else
       render json: @movement.errors, status: :unprocessable_entity
     end
