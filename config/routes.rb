@@ -12,9 +12,18 @@ Rails.application.routes.draw do
     patch  '/sign_up',  to: 'administrators/registrations#update',  as: :administrator_registration
   end
 
+  authenticate do
+    # Parkings
+    get    '/parkings',     to: 'parkings#index',   as: :parkings_path
+    post   '/parkings',     to: 'parkings#create',  as: nil
+    get    '/parkings/:id', to: 'parkings#show',    as: :parking_path
+    patch  '/parkings/:id', to: 'parkings#update',  as: nil
+    put    '/parkings/:id', to: 'parkings#update',  as: nil
+    delete '/parkings/:id', to: 'parkings#destroy', as: nil
+  end
+
   get '/current_administrator', to: 'current_administrator#index'
   resources :movements, except: [:index, :show]
-  resources :parkings
   get '/search/vehicle_by_plate', to: 'search#vehicle_by_plate'
   resources :vacancies, except: :show
 end

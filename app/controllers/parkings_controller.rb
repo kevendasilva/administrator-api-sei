@@ -1,6 +1,5 @@
 class ParkingsController < ApplicationController
   before_action :set_parking, only: %i[ show update destroy ]
-  before_action :authenticate_administrator!
 
   # GET /parkings
   def index
@@ -26,7 +25,7 @@ class ParkingsController < ApplicationController
     @parking = current_administrator.parkings.build(parking_params)
 
     if @parking.save
-      render json: @parking, status: :created, location: @parking
+      render json: @parking, status: :created
     else
       render json: @parking.errors, status: :unprocessable_entity
     end
