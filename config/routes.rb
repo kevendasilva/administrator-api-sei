@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   authenticate do
     # Current Administrator
-    get '/current_administrator', to: 'current_administrator#index'
+    get    '/current_administrator', to: 'current_administrator#index', as: nil
     # Movements
     post   '/movements',     to: 'movements#create',  as: nil
     patch  '/movements/:id', to: 'movements#update',  as: nil
